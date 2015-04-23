@@ -1,0 +1,27 @@
+{
+  "id": "/myproduct/mysubsystem/rabbitmq",
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "rabbitmq:management",
+      "network": "BRIDGE",
+      "portMappings": [
+        { "containerPort": 5672, "servicePort": 5672 },
+        { "containerPort": 15672, "servicePort": 15672 }
+      ]
+    }
+  },
+  "instances": 1,
+  "cpus": 0.1,
+  "mem": 250.0,
+  "healthChecks": [
+    {
+      "protocol": "TCP",
+      "portIndex": 0,
+      "gracePeriodSeconds": 15,
+      "intervalSeconds": 10,
+      "timeoutSeconds": 20,
+      "maxConsecutiveFailures": 3
+    }
+  ]
+}
