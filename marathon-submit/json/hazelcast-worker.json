@@ -1,0 +1,19 @@
+{
+  "id": "/myproduct/mysubsystem/hazelcast-worker",
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "hazelcast-config:latest"
+    }
+  },
+  "ports": [
+    0
+  ],
+  "env": {
+    "HZ_GROUP_NAME": "mygroup",
+    "HZ_GROUP_PASSWORD": "secret"
+  },
+  "instances": 3,
+  "cpus": 0.1,
+  "mem": 500.0
+}
