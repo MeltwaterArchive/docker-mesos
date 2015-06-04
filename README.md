@@ -1,6 +1,8 @@
-# Clustering Infrastructure Images
-These Docker images can be used to build an [Apache Mesos](http://mesos.apache.org/) based cluster. 
+# Dockerized Mesos Stack
+These images can be used to quickly get up and running with a local [Apache Mesos](http://mesos.apache.org/) and [Marathon](https://mesosphere.github.io/marathon/) 
+cluster. The typical use case would be as a workbench to develop, test and demo your Marathon and Docker configurations.
 
+## Usage
 A local instance of the cluster infrastructure can be brought up with [Docker Compose](http://docs.docker.com/compose/) as
 
 ```
@@ -11,8 +13,15 @@ docker-compose up
 ```
 
  * Mesos is available at [localhost:5050](http://localhost:5050)
- * Marathon at [localhost:8080](http://localhost:8080)
- * Demo webapp at [localhost:1234](http://localhost:1234) through the service discovery proxy
+ * Marathon is at [localhost:8080](http://localhost:8080)
+ * The demo webapp can be accessed through the service discovery proxy at [localhost:1234](http://localhost:1234)
+
+**Note:** when using Mac OSX or Windows and [boot2docker](http://boot2docker.io/) the *localhost* part needs to be replaced with the hostname or IP of the boot2docker VM.
+
+## Services and Apps
+The *marathon-submit/json/* directory contains a number of example services that will be automatically submitted to Marathon on startup. You can add services by dropping JSON config files for Marathon into the *marathon-submit/json/* directory, doing a *docker-compose build* and they'll be deployed when you restart the cluster. One can also deploy apps directly to the running cluster using the Marathon [REST API](https://mesosphere.github.io/marathon/docs/rest-api.html) on http://localhost:8080/v2/... 
+
+Check out the [Marathon docs](https://mesosphere.github.io/marathon/docs/) for further info and examples.
 
 ## Service Discovery
 There's several ways to implement service discovery, ranging from dynamic DNS and configuration updates to lower level network 
@@ -20,11 +29,11 @@ plumbing. One of the goals of service discovery is to externalize concerns like 
 scaling from service consumers and applications. Another aspect is the ability to vary the service discovery mechanism and 
 network plumbing without impacting existing applications and configurations.
 
-### Network Proxies
+### Dynamic Proxies
 A common service discovery implementation involves proxies that bind to localhost and forwards TCP and UDP connections to 
-where the service is currently running. Clients are then statically configured to access services through localhost on a 
-well-known portnumber. The proxy takes care of failover and load balancing in case the service moves or has multiple 
-replicas. In case of a failover the service consumer will receive a transient network connection error and needs to retry 
+where services are currently running. Clients are statically configured to access services through localhost on a 
+well-known port number. The proxy takes care of failover and load balancing in case the service moves or has multiple 
+replicas. In case of a failover the service consumer will receive a transient connection error and needs to retry 
 until the connection reestablishes.
 
 In this solution Marathon keeps track of running services and expose this state through RESTful HTTP endpoints. The 
