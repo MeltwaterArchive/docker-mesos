@@ -11,8 +11,6 @@ zookeeper:
 mesosmaster:
   image: meltwater/mesos-master:latest
   net: host
-  ports:
-   - "5050:5050"
   environment:
     MESOS_ZK: zk://localhost:2181/mesos
     MESOS_QUORUM: 1
@@ -29,16 +27,12 @@ mesosslave:
 #    - /cgroup:/cgroup
     - /var/run/docker.sock:/var/run/docker.sock:rw
     - /usr/bin/docker:/usr/bin/docker:ro
-  ports:
-   - "5051:5051"
   environment:
     MESOS_MASTER: zk://localhost:2181/mesos
 
 marathon:
   image: meltwater/marathon:latest
   net: host
-  ports:
-   - "8080:8080"
   environment:
     MARATHON_ZK: zk://localhost:2181/marathon
     MARATHON_MASTER: zk://localhost:2181/mesos
@@ -54,8 +48,8 @@ marathonsubmit:
 gateway:
   image: meltwater/proxymatic:latest
   net: host
-  ports:
-   - "5091:5091"
   environment:
     MARATHON_URL: http://localhost:8080
-    MARATHON_CALLBACK_URL: http://localhost:5091
+    MARATHON_CALLBACK_URL: http://localhost:5090
+    EXPOSE_HOST: true
+    HAPROXY: true

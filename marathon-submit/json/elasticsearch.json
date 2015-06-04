@@ -1,0 +1,28 @@
+{
+  "id": "/myproduct/mysubsystem/elasticsearch",
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "elasticsearch:latest",
+      "network": "BRIDGE",
+      "portMappings": [
+        { "containerPort": 9200, "servicePort": 9200 },
+        { "containerPort": 9300, "servicePort": 9300 }
+      ]
+    }
+  },
+  "instances": 3,
+  "cpus": 0.1,
+  "mem": 500.0,
+  "healthChecks": [
+    {
+      "protocol": "HTTP",
+      "path": "/_cluster/health",
+      "portIndex": 0,
+      "gracePeriodSeconds": 15,
+      "intervalSeconds": 10,
+      "timeoutSeconds": 20,
+      "maxConsecutiveFailures": 3
+    }
+  ]
+}

@@ -12,6 +12,7 @@ docker-compose up
 
  * Mesos is available at [localhost:5050](http://localhost:5050)
  * Marathon at [localhost:8080](http://localhost:8080)
+ * Demo webapp at [localhost:1234](http://localhost:1234) through the service discovery proxy
 
 ## Service Discovery
 There's several ways to implement service discovery, ranging from dynamic DNS and configuration updates to lower level network 
