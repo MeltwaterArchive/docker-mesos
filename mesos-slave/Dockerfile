@@ -1,5 +1,9 @@
 FROM meltwater/mesos:latest
-RUN yum -y install epel-release && yum -y install docker-io && yum clean all
+
+# Install Docker client
+RUN yum -y install epel-release && \
+	yum -y install docker-io && \
+	yum clean all
 
 # Only docker containerizer is support when running Mesos inside Docker
 ENV MESOS_CONTAINERIZERS docker

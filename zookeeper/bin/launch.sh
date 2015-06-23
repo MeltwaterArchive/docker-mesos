@@ -8,12 +8,12 @@ chown -R zookeeper:zookeeper "$ZOOKEEPER_DIR"
 
 # Fixup configuration
 if [ "$ZK_SERVERS" == "" ]; then
-  echo "Missing \$ZK_SERVERS with list of peers, e.g. '\$ZK_SERVERS=server.1=1.1.1.1:2888:3888,server.2=2.2.2.2:2888:3888,server.3=3.3.3.3:2888:3888'"
+  echo "Missing \$ZK_SERVERS with list of peers, e.g. 'ZK_SERVERS=server.1=1.1.1.1:2888:3888,server.2=2.2.2.2:2888:3888,server.3=3.3.3.3:2888:3888'"
   exit 1
 fi
 
 if [ "$ZK_MYID" == "" ]; then
-  echo "Missing \$ZK_MYID with id of this peer, e.g. '\$ZK_MYID=1'"
+  echo "Missing \$ZK_MYID with id of this peer, e.g. 'ZK_MYID=1'"
   exit 1
 fi
 
