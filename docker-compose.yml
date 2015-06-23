@@ -26,7 +26,6 @@ mesosslave:
 # /cgroup is needed on some older Linux versions
 #    - /cgroup:/cgroup
     - /var/run/docker.sock:/var/run/docker.sock:rw
-    - /usr/bin/docker:/usr/bin/docker:ro
   environment:
     MESOS_MASTER: zk://localhost:2181/mesos
 
