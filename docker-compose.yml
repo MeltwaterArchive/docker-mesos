@@ -51,4 +51,4 @@ gateway:
     MARATHON_URL: http://localhost:8080
     MARATHON_CALLBACK_URL: http://localhost:5090
     EXPOSE_HOST: true
-    VHOST_DOMAIN: dev.meltwater.net
+    VHOST_DOMAIN: localdomain
