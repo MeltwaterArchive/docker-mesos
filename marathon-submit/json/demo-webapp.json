@@ -1,5 +1,5 @@
 {
-  "id": "/myproduct/mysubsystem/demo-webapp",
+  "id": "/demo/webapp",
   "container": {
     "type": "DOCKER",
     "docker": {

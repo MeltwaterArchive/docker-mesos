@@ -15,6 +15,7 @@ docker-compose up
  * Mesos is available at [localhost:5050](http://localhost:5050)
  * Marathon is at [localhost:8080](http://localhost:8080)
  * The demo webapp can be accessed through the service discovery proxy at [localhost:1234](http://localhost:1234)
+ * Using Nginx vhost the demo webapp is also at [demo-webapp.localdomain](http://demo-webapp.localdomain) if you add a host alias "127.0.0.1 demo-webapp.localdomain"
 
 **Note:** when using Mac OSX or Windows and [boot2docker](http://boot2docker.io/) the *localhost* part needs to be replaced with the hostname or IP of the boot2docker VM.
 
