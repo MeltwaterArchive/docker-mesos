@@ -1,6 +1,6 @@
 FROM meltwater/mesos:latest
 
-ENV BUILD_VERSION 0.8.2-RC1
+ENV BUILD_VERSION 0.10.1
 
 RUN yum -y install tar gzip && yum clean all
 RUN curl -o /tmp/marathon.tgz "http://downloads.mesosphere.com/marathon/v${BUILD_VERSION}/marathon-${BUILD_VERSION}.tgz" && \
