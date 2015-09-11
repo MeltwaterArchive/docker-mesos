@@ -28,6 +28,8 @@ mesosslave:
     - /var/run/docker.sock:/var/run/docker.sock:rw
   environment:
     MESOS_MASTER: zk://localhost:2181/mesos
+# If your workstation doesn't have a resolvable hostname/FQDN then $MESOS_HOSTNAME needs to be set to its IP-address
+#    MESOS_HOSTNAME: 10.87.1.123
 
 marathon:
   image: meltwater/marathon:latest
