@@ -8,16 +8,31 @@ A local instance of the cluster infrastructure can be brought up with [Docker Co
 ```
 git clone git@github.com:meltwater/docker-mesos.git
 cd docker-mesos
+
+# You need to edit docker-compose.yml and set MESOS_HOSTNAME=<your IP-address> on the mesosslave
+# container. This applies if your host doesn't have a hostname that resolves via DNS.
+
+docker-compose up
+```
+
+### Modifying Services
+
+If you add or modify the Marathon json files in marathon-submit/json/ you can restart the cluster to have them submitted. 
+
+```
+docker-compose kill
+docker-compose rm -f
 docker-compose build
 docker-compose up
 ```
+
+## Web Interfaces
+**Note:** when using Mac OSX or Windows and [boot2docker](http://boot2docker.io/) the *localhost* part needs to be replaced with the hostname or IP of the boot2docker VM.
 
  * Mesos is available at [localhost:5050](http://localhost:5050)
  * Marathon is at [localhost:8080](http://localhost:8080)
  * The demo webapp can be accessed through the service discovery proxy at [localhost:1234](http://localhost:1234)
  * Using Nginx vhost the demo webapp is also at [demo-webapp.localdomain](http://demo-webapp.localdomain) if you add a host alias "127.0.0.1 demo-webapp.localdomain"
-
-**Note:** when using Mac OSX or Windows and [boot2docker](http://boot2docker.io/) the *localhost* part needs to be replaced with the hostname or IP of the boot2docker VM.
 
 ## Services and Apps
 The *marathon-submit/json/* directory contains a number of example services that will be automatically submitted to Marathon on startup. You can add services by dropping JSON config files for Marathon into the *marathon-submit/json/* directory, doing a *docker-compose build* and they'll be deployed when you restart the cluster. One can also deploy apps directly to the running cluster using the Marathon [REST API](https://mesosphere.github.io/marathon/docs/rest-api.html) on http://localhost:8080/v2/... 
