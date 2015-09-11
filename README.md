@@ -9,8 +9,9 @@ A local instance of the cluster infrastructure can be brought up with [Docker Co
 git clone git@github.com:meltwater/docker-mesos.git
 cd docker-mesos
 
-# You need to edit docker-compose.yml and set MESOS_HOSTNAME=<your IP-address> on the mesosslave
-# container. This applies if your host doesn't have a hostname that resolves via DNS.
+# You need to edit docker-compose.yml and set MESOS_HOSTNAME=<your IP-address> 
+# on the mesosslave container. This applies if your host doesn't have a 
+# hostname that resolves via DNS.
 
 docker-compose up
 ```
