@@ -19,7 +19,7 @@
   "healthChecks": [
     {
       "protocol": "HTTP",
-      "path": "/",
+      "path": "/_status",
       "portIndex": 0,
       "gracePeriodSeconds": 15,
       "intervalSeconds": 10,

@@ -1,9 +1,23 @@
-import os
+import os, signal
 
 from flask import Flask
 from flask import request
 
 app = Flask(__name__)
+healty = True
+
+# Start failing the health check when receiving SIGTERM
+def sigterm_handler(_signo, _stack_frame):
+    global healty
+    print "Caught SIGTERM, starting to fail the health check"
+    healty = False
+signal.signal(signal.SIGTERM, sigterm_handler)
+
+@app.route('/_status')
+def status():
+	if healty:
+		return ''
+	return '', 503
 
 @app.route('/')
 def hello():
