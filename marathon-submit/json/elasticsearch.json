@@ -1,16 +1,16 @@
 {
   "id": "/myproduct/mysubsystem/elasticsearch",
+  "cmd": "elasticsearch -Des.network.publish_host=${HOST} -Des.http.port=${PORT_9200} -Des.transport.tcp.port=${PORT_9300}",
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "elasticsearch:latest",
-      "network": "BRIDGE",
-      "portMappings": [
-        { "containerPort": 9200, "servicePort": 9200 },
-        { "containerPort": 9300, "servicePort": 9300 }
-      ]
+      "image": "elasticsearch:latest"
     }
   },
+  "ports": [
+    9200,
+    9300
+  ],
   "instances": 3,
   "cpus": 0.1,
   "mem": 500.0,

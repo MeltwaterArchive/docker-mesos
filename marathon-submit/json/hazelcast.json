@@ -7,9 +7,11 @@
     }
   },
   "ports": [
-    0
+    5701
   ],
   "env": {
+    "HZ_PORT": "${PORT_5701}",
+    "HZ_PUBLIC_HOST": "${HOST}",
     "HZ_GROUP_NAME": "mygroup",
     "HZ_GROUP_PASSWORD": "secret"
   },
