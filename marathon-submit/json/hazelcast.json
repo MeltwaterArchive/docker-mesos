@@ -12,7 +12,7 @@
   "env": {
     "HZ_PORT": "${PORT_5701}",
     "HZ_PUBLIC_HOST": "${HOST}",
-    "HZ_GROUP_NAME": "mygroup",
+    "HZ_GROUP_NAME": "${MARATHON_APP_ID}",
     "HZ_GROUP_PASSWORD": "secret"
   },
   "instances": 3,
