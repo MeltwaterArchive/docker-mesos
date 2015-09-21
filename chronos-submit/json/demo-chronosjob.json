@@ -1,0 +1,12 @@
+{
+  "schedule": "R/2014-09-25T17:22:00Z/PT30S",
+  "name": "demo-chronosjob",
+  "container": {
+    "type": "DOCKER",
+    "image": "centos:7",
+    "network": "BRIDGE"
+  },
+  "cpus": "0.1",
+  "mem": "128",
+  "command": "echo 'Hello Chronos!' && sleep 5"
+}

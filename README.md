@@ -37,9 +37,10 @@ docker-compose up
  * Using Nginx vhost the demo webapp is also at [webapp.demo.localdomain](http://webapp.demo.localdomain) if you add a host alias "127.0.0.1 webapp.demo.localdomain"
 
 ## Services and Apps
-The *marathon-submit/json/* directory contains a number of example services that will be automatically submitted to Marathon on startup. You can add services by dropping JSON config files for Marathon into the *marathon-submit/json/* directory, doing a *docker-compose build* and they'll be deployed when you restart the cluster. One can also deploy apps directly to the running cluster using the Marathon [REST API](https://mesosphere.github.io/marathon/docs/rest-api.html) on http://localhost:8080/v2/... 
+The *marathon-submit/json/* directory contains a number of example services that will be automatically submitted to Marathon on startup. You can add services by dropping JSON config files for Marathon into the *marathon-submit/json/* directory, doing a *docker-compose build* and they'll be deployed when you restart the cluster. One can also deploy apps directly to the running cluster using the Marathon [REST API](https://mesosphere.github.io/marathon/docs/rest-api.html). The same works for the *chronos-submit/json/* directory. See the Chronos [REST API](https://mesos.github.io/chronos/docs/api.html) for more info.
 
-Check out the [Marathon docs](https://mesosphere.github.io/marathon/docs/) for further info and examples.
+* [Marathon docs](https://mesosphere.github.io/marathon/docs/) for further info and examples. 
+* [Chronos docs](https://mesos.github.io/chronos/docs/) for further info and examples. 
 
 ## Service Discovery
 There's several ways to implement service discovery, ranging from dynamic DNS and configuration updates to lower level network 
