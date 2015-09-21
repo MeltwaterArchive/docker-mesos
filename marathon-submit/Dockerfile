@@ -1,4 +1,4 @@
-FROM centos:6
+FROM centos:7
 
 # Use JSONLint to check *.json files
 RUN curl -Ls https://rpm.nodesource.com/setup | bash -
