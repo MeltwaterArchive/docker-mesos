@@ -31,7 +31,7 @@ mesos-slave:
     MESOS_EXECUTOR_SHUTDOWN_GRACE_PERIOD: 90secs
     MESOS_DOCKER_STOP_TIMEOUT: 60secs
 # If your workstation doesn't have a resolvable hostname/FQDN then $MESOS_HOSTNAME needs to be set to its IP-address
-#    MESOS_HOSTNAME: 10.87.1.123
+    MESOS_HOSTNAME: 10.87.1.211
 
 marathon:
   image: mesoscloud/marathon:0.10.1-centos-7

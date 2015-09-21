@@ -1,6 +1,6 @@
 # Dockerized Mesos Stack
-These images can be used to quickly get up and running with a local [Apache Mesos](http://mesos.apache.org/) and [Marathon](https://mesosphere.github.io/marathon/) 
-cluster. The typical use case would be as a workbench to develop, test and demo your Marathon and Docker configurations.
+These images can be used to quickly get up and running with a local [Apache Mesos](http://mesos.apache.org/), [Marathon](https://mesosphere.github.io/marathon/) 
+and [Chronos](https://github.com/mesos/chronos/) cluster. The typical use case would be as a workbench to develop, test and demo your Marathon and Docker configurations.
 
 ## Usage
 A local instance of the cluster infrastructure can be brought up with [Docker Compose](http://docs.docker.com/compose/) as
@@ -32,6 +32,7 @@ docker-compose up
 
  * Mesos is available at [localhost:5050](http://localhost:5050)
  * Marathon is at [localhost:8080](http://localhost:8080)
+ * Chronos is at [localhost:4400](http://localhost:4400)
  * The demo webapp can be accessed through the service discovery proxy at [localhost:1234](http://localhost:1234)
  * Using Nginx vhost the demo webapp is also at [webapp.demo.localdomain](http://webapp.demo.localdomain) if you add a host alias "127.0.0.1 webapp.demo.localdomain"
 
