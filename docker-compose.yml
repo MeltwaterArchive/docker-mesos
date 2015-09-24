@@ -8,7 +8,7 @@ zookeeper:
     SERVERS: server.1=127.0.0.1
     MYID: 1
 
-mesos-master:
+mesosmaster:
   image: mesoscloud/mesos-master:0.23.0-centos-7
   net: host
   environment:
@@ -17,7 +17,7 @@ mesos-master:
     MESOS_CLUSTER: local
     MESOS_HOSTNAME: localhost
 
-mesos-slave:
+mesosslave:
   image: mesoscloud/mesos-slave:0.23.0-centos-7
   net: host
   privileged: true
@@ -25,6 +25,8 @@ mesos-slave:
     - /sys:/sys
 # /cgroup is needed on some older Linux versions
 #    - /cgroup:/cgroup
+# /usr/bin/docker is needed if you're running an older docker version
+#    - /usr/local/bin/docker:/usr/bin/docker:r
     - /var/run/docker.sock:/var/run/docker.sock:rw
   environment:
     MESOS_MASTER: zk://localhost:2181/mesos
@@ -42,7 +44,7 @@ marathon:
     MARATHON_EVENT_SUBSCRIBER: http_callback
     MARATHON_TASK_LAUNCH_TIMEOUT: 300000
 
-marathon-submit:
+marathonsubmit:
   build: marathon-submit
   net: host
   entrypoint: sh
@@ -58,7 +60,7 @@ chronos:
     CHRONOS_MASTER: zk://localhost:2181/mesos
     CHRONOS_HTTP_PORT: 4400
 
-chronos-submit:
+chronossubmit:
   build: chronos-submit
   net: host
   entrypoint: sh
