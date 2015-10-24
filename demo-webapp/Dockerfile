@@ -1,7 +1,7 @@
-FROM centos:6
+FROM centos:7
 
 # Install Epel YUM repo
-RUN rpm -i "https://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm"
+RUN yum -y install epel-release && yum clean all
 
 # Install Python package manager
 RUN yum -y install python-pip && yum clean all

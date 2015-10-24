@@ -36,7 +36,7 @@ mesosslave:
 #    MESOS_HOSTNAME: 10.87.1.123
 
 marathon:
-  image: mesoscloud/marathon:0.10.1-centos-7
+  image: mesoscloud/marathon:0.11.0-centos-7
   net: host
   environment:
     MARATHON_ZK: zk://localhost:2181/marathon
@@ -74,5 +74,6 @@ gateway:
   environment:
     MARATHON_URL: http://localhost:8080
     MARATHON_CALLBACK_URL: http://localhost:5090
-    EXPOSE_HOST: true
+    EXPOSE_HOST: "true"
     VHOST_DOMAIN: localdomain
+    VERBOSE: "true"
