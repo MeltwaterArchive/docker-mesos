@@ -1,10 +1,7 @@
-FROM centos:7
-
-# Install Epel YUM repo
-RUN yum -y install epel-release && yum clean all
+FROM alpine:latest
 
 # Install Python package manager
-RUN yum -y install python-pip && yum clean all
+RUN apk -U add python py-pip
 
 # Install webapp requirements such as Flask
 ADD ./webapp/requirements.txt /tmp/requirements.txt

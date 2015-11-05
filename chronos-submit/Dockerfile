@@ -1,8 +1,7 @@
-FROM centos:7
+FROM alpine:latest
 
 # Use JSONLint to check *.json files
-RUN curl -Ls https://rpm.nodesource.com/setup | bash -
-RUN yum -y install nodejs && yum clean all
+RUN apk -U add curl nodejs
 RUN npm install -g jsonlint
 
 # Default URL for Chronos
