@@ -4,7 +4,7 @@
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "elasticsearch:latest"
+      "image": "elasticsearch:1"
     }
   },
   "ports": [
@@ -24,5 +24,8 @@
       "timeoutSeconds": 5,
       "maxConsecutiveFailures": 3
     }
+  ],
+  "constraints": [
+    ["hostname", "GROUP_BY"]
   ]
 }

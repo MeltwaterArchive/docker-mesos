@@ -6,6 +6,10 @@ for file in $@; do
     if [ "$?" == "0" ]; then
       break
     fi
-    sleep 1
+    sleep 1 & wait
   done
+done
+
+while true; do
+  sleep 10000 & wait
 done

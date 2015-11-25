@@ -14,5 +14,5 @@ RUN /validate.sh /json/*.json
 
 # Default entrypoint submits all files into Marathon
 COPY bin/launch.sh /launch.sh
-ENTRYPOINT ["/launch.sh"]
-CMD ["/json/*.json"]
+ENTRYPOINT ["/bin/sh", "-c"]
+CMD ["/launch.sh /json/*.json"]
