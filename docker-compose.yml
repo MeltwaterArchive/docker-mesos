@@ -56,6 +56,8 @@ marathonsubmit:
   net: host
   environment:
     MARATHON_URL: http://localhost:8080
+  volumes:
+    - "./marathon-submit:/submit"
 
 #chronos:
 #  image: mesoscloud/chronos:2.4.0-centos-7
