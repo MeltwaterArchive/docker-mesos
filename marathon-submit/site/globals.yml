@@ -1,0 +1,4 @@
+secretary:
+  url: "http://localhost:5070"
+  master:
+    publickey: './keys/master-public-key.pem'

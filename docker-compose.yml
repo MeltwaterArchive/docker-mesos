@@ -38,7 +38,6 @@ mesosslave:
     MESOS_LOG_DIR: /var/log/mesos/slave
     MESOS_EXECUTOR_SHUTDOWN_GRACE_PERIOD: 90secs
     MESOS_DOCKER_STOP_TIMEOUT: 60secs
-    MESOS_HOSTNAME: slave-01
 # If your workstation doesn't have a resolvable hostname/FQDN then $MESOS_HOSTNAME needs to be set to its IP-address
 #    MESOS_HOSTNAME: 10.87.1.123
 
@@ -58,6 +57,8 @@ marathonsubmit:
     MARATHON_URL: http://localhost:8080
   volumes:
     - "./marathon-submit:/submit"
+# Enables using local development repo of lighter
+#    - "../lighter:/lighter"
 
 #chronos:
 #  image: mesoscloud/chronos:2.4.0-centos-7
@@ -82,3 +83,9 @@ gateway:
     EXPOSE_HOST: "true"
     VHOST_DOMAIN: localdomain
     VERBOSE: "true"
+
+secretary:
+  image: meltwater/secretary:latest
+  net: host
+  volumes:
+    - "./marathon-submit/site/keys:/keys"

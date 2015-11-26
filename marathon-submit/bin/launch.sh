@@ -1,4 +1,12 @@
-#!/bin/sh -x
+#!/bin/sh
+set -x
+
+# Prefer locally build lighter version
+LIGHTER=$(which lighter)
+DEVLIGHTER="/lighter/dist/lighter-$(uname -s)-$(uname -m)"
+if [ -e  "$DEVLIGHTER" ]; then
+    LIGHTER="$DEVLIGHTER"
+fi
 
 for file in /submit/json/*.json; do
   while true; do
@@ -12,13 +20,18 @@ done
 
 # Run lighter to deploy yaml files
 function DEPLOY {
-    /bin/lighter -v deploy -f -m "${MARATHON_URL}" $(find /submit/site -name \*.yml -not -name globals.yml)
+    mkdir -p /submit/target
+    chmod -R a+rwX /submit/site/keys
+    cd /submit/site
+
+    "$LIGHTER" -t /submit/target deploy -f -m "${MARATHON_URL}" $(find . -name \*.yml -not -name globals.yml)
+    chmod -R a+rwX /submit/target
 }
 
 DEPLOY;
 EVENTS="CREATE,CLOSE_WRITE,DELETE,MODIFY,MOVED_FROM,MOVED_TO"
 
-inotifywait -m -q -e "$EVENTS" -r --format '%:e %w%f' "/submit/site" | while read file
+inotifywait -m -q -e "$EVENTS" -r --format '%:e %w%f' "/submit/site" "$LIGHTER" | while read file
   do
     DEPLOY;
   done

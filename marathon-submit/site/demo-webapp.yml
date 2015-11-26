@@ -4,15 +4,17 @@ service:
     type: "DOCKER"
     docker:
       image: "meltwater/mesos-demo-webapp:latest"
-      network: "BRIDGE"
-      portMappings:
-        - containerPort: 8080 
-          servicePort: 1234
+      network: "HOST"
+  ports:
+   - 1234
   env:
     DATABASE: "mysql://$HOST:3306"
+    DATABASE_USERNAME: "myuser"
+    DATABASE_PASSWORD: "ENC[NACL,9eXE3SFcX28qlijqHLUm47HbrMtIL6xJvfpVmJrxYwk4J7hRXYi+Gnnbw3ALTQ==]"
+    SERVICE_PUBLIC_KEY: "kVOhhw2wAJuAofxO7h4EM0xboxGAwnsq9J6fluFY5CQ="
   instances: 3
   cpus: 0.1
-  mem: 200.0
+  mem: 200
   healthChecks:
     - protocol: "HTTP"
       path: "/_status"
