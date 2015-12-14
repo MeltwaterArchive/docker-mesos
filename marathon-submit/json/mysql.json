@@ -15,7 +15,7 @@
   },
   "instances": 1,
   "cpus": 0.1,
-  "mem": 500.0,
+  "mem": 500,
   "healthChecks": [
     {
       "protocol": "TCP",

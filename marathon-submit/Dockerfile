@@ -8,16 +8,17 @@ RUN yum -y install epel-release && \
 RUN npm install -g jsonlint
 
 # Add lighter to image
-RUN curl -fsSLo /bin/lighter "https://github.com/meltwater/lighter/releases/download/0.3.1/lighter-Linux-x86_64" && \
-    chmod +x /bin/lighter
+RUN curl -fsSLo /usr/bin/lighter "https://github.com/meltwater/lighter/releases/download/0.6.0/lighter-Linux-x86_64" && \
+    chmod +x /usr/bin/lighter
 
 # Default URL for Marathon
 ENV MARATHON_URL http://localhost:8080
 
 # Validate json syntax
 COPY json /submit/json
+COPY site /submit/site
 COPY bin/validate.sh /validate.sh
-RUN /validate.sh /submit/json/*.json
+RUN /validate.sh
 
 # Expect marathon-submit to be mounted at /submit
 VOLUME ["/submit"]
