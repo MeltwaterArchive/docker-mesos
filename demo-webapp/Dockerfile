@@ -12,6 +12,9 @@ RUN curl -fsSLo /usr/bin/secretary "https://github.com/meltwater/secretary/relea
     chmod +x /usr/bin/secretary
 ADD service-private-key.pem /service/keys/service-private-key.pem
 
+# Unprivileged user to run service
+RUN addgroup app && adduser -D -h / -H -g app -G app app
+
 # Deploy the webapp
 ADD ./webapp /opt/webapp/
 ADD launch.sh /

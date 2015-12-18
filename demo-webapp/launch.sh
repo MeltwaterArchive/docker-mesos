@@ -12,5 +12,14 @@ echo "$SECRETS"
 # Source the secrets into the env
 eval "$SECRETS"
 
+# Utility function to launch service process as unprivileged user
+# Usage: launch username command [arguments]...
+launch() {
+	svcuser="$1"
+	svcexec="$2"
+	shift 2
+	exec su -p "$svcuser" -s "$svcexec" -- "$@"
+}
+
 # Start the main app
-exec python app.py
+launch app "/usr/bin/python" "app.py"
