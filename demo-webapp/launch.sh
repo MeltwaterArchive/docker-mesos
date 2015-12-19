@@ -16,10 +16,9 @@ eval "$SECRETS"
 # Usage: launch username command [arguments]...
 launch() {
 	svcuser="$1"
-	svcexec="$2"
-	shift 2
-	exec su -p "$svcuser" -s "$svcexec" -- "$@"
+	shift 1
+	exec gosu "$svcuser" tini -- "$@"
 }
 
 # Start the main app
-launch app "/usr/bin/python" "app.py"
+launch app python app.py
