@@ -6,7 +6,7 @@ for file in /submit/json/*.json; do
 done
 
 # Prefer locally build lighter version
-LIGHTER=$(which lighter)
+LIGHTER="/usr/bin/lighter"
 DEVLIGHTER="/lighter/dist/lighter-$(uname -s)-$(uname -m)"
 if [ -e  "$DEVLIGHTER" ]; then
     LIGHTER="$DEVLIGHTER"

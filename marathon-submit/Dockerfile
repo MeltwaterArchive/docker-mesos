@@ -8,7 +8,7 @@ RUN yum -y install epel-release && \
 RUN npm install -g jsonlint
 
 # Add lighter to image
-RUN curl -fsSLo /usr/bin/lighter "https://github.com/meltwater/lighter/releases/download/0.6.0/lighter-Linux-x86_64" && \
+RUN curl -o /usr/bin/lighter -fsSL "https://github.com/meltwater/lighter/releases/download/0.7.0/lighter-Linux-x86_64" && \
     chmod +x /usr/bin/lighter
 
 # Default URL for Marathon

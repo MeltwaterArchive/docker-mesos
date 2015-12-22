@@ -1,23 +1,32 @@
 import os, signal
 
-from flask import Flask
+from flask import Response, Flask
 from flask import request
 
 app = Flask(__name__)
-healty = True
+shutdown = False
+
+def shutdown_server():
+    func = request.environ.get('werkzeug.server.shutdown')
+    if func is not None:
+        print "Gracefully stopping server"
+        func()
+    else:
+        print 'Failed to stop gracefully: Not running with the Werkzeug Server'
 
 # Start failing the health check when receiving SIGTERM
 def sigterm_handler(_signo, _stack_frame):
-    global healty
-    print "Caught SIGTERM, starting to fail the health check"
-    healty = False
+    global shutdown
+    print "Caught SIGTERM, setting flag to gracefully stop server"
+    shutdown = True
 signal.signal(signal.SIGTERM, sigterm_handler)
 
 @app.route('/_status')
 def status():
-	if healty:
-		return ''
-	return '', 503
+    if shutdown:
+        #shutdown_server()
+        return 503, ''
+    return ''
 
 @app.route('/')
 def hello():
@@ -30,12 +39,16 @@ Hello world!<br/><br/>
 == HTTP Request Headers ==<br/>
 %s
 """
-    cid = os.environ.get('HOSTNAME','localhost')
+    cid = os.environ.get('MESOS_TASK_ID','localhost')
     dsn = os.path.expandvars(os.environ.get('DATABASE',''))
     username = os.environ.get('DATABASE_USERNAME','')
     password = os.environ.get('DATABASE_PASSWORD','')
     headers = "<br/>\n".join(['%s: %s' % (key, value) for key, value in request.headers.items()])
-    return template % (cid, dsn, username, password, headers)
+    body = template % (cid, dsn, username, password, headers)
+
+    response = Response(body)
+    #response.headers['Connection'] = 'close'
+    return response
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT0', '8080')))
