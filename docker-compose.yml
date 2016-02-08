@@ -44,7 +44,7 @@ mesosslave:
 #    MESOS_HOSTNAME: 10.87.1.123
 
 marathon:
-  image: mesosphere/marathon:v0.15.0
+  image: mesosphere/marathon:v0.15.1
   net: host
   environment:
     MARATHON_ZK: 'zk://localhost:2181/marathon'
