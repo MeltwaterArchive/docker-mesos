@@ -34,17 +34,19 @@ def hello():
 """
 Hello world!<br/><br/>
 - I'm container id %s<br/>
+- My mesos task id is %s<br/>
 - My database is at %s (username: %s, password: %s)<br/>
 <br/>
 == HTTP Request Headers ==<br/>
 %s
 """
-    cid = os.environ.get('MESOS_TASK_ID','localhost')
+    cid = os.environ.get('HOSTNAME','localhost')
+    mid = os.environ.get('MESOS_TASK_ID','localhost')
     dsn = os.path.expandvars(os.environ.get('DATABASE',''))
     username = os.environ.get('DATABASE_USERNAME','')
     password = os.environ.get('DATABASE_PASSWORD','')
     headers = "<br/>\n".join(['%s: %s' % (key, value) for key, value in request.headers.items()])
-    body = template % (cid, dsn, username, password, headers)
+    body = template % (cid, mid, dsn, username, password, headers)
 
     response = Response(body)
     #response.headers['Connection'] = 'close'
