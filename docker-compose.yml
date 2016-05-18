@@ -9,7 +9,7 @@ zookeeper:
     MYID: '1'
 
 mesosmaster:
-  image: mesosphere/mesos-master:0.27.0-0.2.190.ubuntu1404
+  image: mesosphere/mesos-master:0.28.1
   net: host
   volumes:
     - /var/log/mesos/master
@@ -44,7 +44,7 @@ mesosslave:
 #    MESOS_HOSTNAME: 10.87.1.123
 
 marathon:
-  image: mesosphere/marathon:v0.15.1
+  image: mesosphere/marathon:v1.1.1
   net: host
   environment:
     MARATHON_ZK: 'zk://localhost:2181/marathon'
@@ -63,7 +63,7 @@ marathonsubmit:
 #    - '../lighter:/lighter'
 
 chronos:
-  image: mesosphere/chronos:chronos-2.4.0-0.1.20150828104228.ubuntu1404-mesos-0.27.0-0.2.190.ubuntu1404
+  image: mesosphere/chronos:chronos-2.5.0-0.1.20160223054243.ubuntu1404-mesos-0.27.1-2.0.226.ubuntu1404
   command: '/usr/bin/chronos run_jar --http_port 4400 --zk_hosts localhost:2181 --master zk://localhost:2181/mesos'
   net: host
 
